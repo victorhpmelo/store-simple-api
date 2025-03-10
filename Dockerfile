@@ -1,3 +1,3 @@
 FROM openjdk:17
-ADD ./docker-api.jar docker-api.jar
+ADD target/docker-api.jar docker-api.jar
 ENTRYPOINT ["java","-jar","docker-api.jar"]
