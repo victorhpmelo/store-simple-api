@@ -4,10 +4,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringDataJpaApiApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringDataJpaApiApplication.class, args);
+		String PORT = System.getenv("PORT");
+
+		SpringApplication.run(Application.class, args);
 	}
 
 }

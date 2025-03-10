@@ -103,6 +103,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>docker-api</finalName>
 	</build>
 
 </project>
