@@ -1,5 +1,6 @@
 package me.api.spring_data_jpa_api.models;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,6 +18,7 @@ import lombok.Setter;
 @Setter
 public class Product {
   @Id
+  @Schema(accessMode = Schema.AccessMode.READ_ONLY)
   @GeneratedValue(strategy = GenerationType.UUID)
   private String id;
   @Column(length = 50,nullable = false)
