@@ -3,6 +3,7 @@ package me.api.spring_data_jpa_api.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import me.api.spring_data_jpa_api.repositories.ProductRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,9 +25,11 @@ import me.api.spring_data_jpa_api.services.ProductService;
 public class ProductController {
 
     private final ProductService productService;
+    private final ProductRepository productRepository;
 
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService, ProductRepository productRepository) {
         this.productService = productService;
+        this.productRepository = productRepository;
     }
 
     @Operation(summary = "View a list of available products")
@@ -42,10 +45,9 @@ public class ProductController {
         return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @Operation(summary = "Add a new product")
     @PostMapping
-    public Product createProduct(@RequestBody Product product) {
-        return productService.createProduct(product);
+    public List<Product> createProducts(@RequestBody List<Product> products) {
+        return productRepository.saveAll(products);
     }
 
     @Operation(summary = "Update an existing product")
